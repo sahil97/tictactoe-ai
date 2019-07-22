@@ -8,6 +8,9 @@ const Square = props => {
     show = props.value;
     disabled = true;
   }
+  if (props.winState) {
+    disabled = true;
+  }
   return (
     <button
       className={"square " + show}
