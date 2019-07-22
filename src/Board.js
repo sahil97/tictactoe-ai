@@ -198,9 +198,9 @@ class Board extends React.Component {
     }
 
     return (
-      <div>
+      <div className="container">
         <div className="status">{status}</div>
-        <div className="board-row">
+        <div className="board-row board-row-1">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
@@ -215,7 +215,9 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <button onClick={() => this.resetGame()}>Reset Game</button>
+        <button className="reset" onClick={() => this.resetGame()}>
+          Reset Game
+        </button>
       </div>
     );
   }

@@ -1,3 +1,10 @@
 .App {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.Game {
+  max-width: 768px;
 }
