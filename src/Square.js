@@ -9,7 +9,11 @@ const Square = props => {
     disabled = true;
   }
   return (
-    <button className="square" onClick={props.onClick} disabled={disabled}>
+    <button
+      className={"square " + show}
+      onClick={props.onClick}
+      disabled={disabled}
+    >
       {show}
     </button>
   );

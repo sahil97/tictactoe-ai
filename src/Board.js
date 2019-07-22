@@ -1,6 +1,7 @@
 import React from "react";
 import Square from "./Square";
 import "./index.css";
+import { FaRedoAlt } from "react-icons/fa";
 
 class Board extends React.Component {
   constructor(props) {
@@ -188,13 +189,13 @@ class Board extends React.Component {
     const tie = this.calculateTie(this.state.squares);
     let status = "";
     if (winnerX) {
-      status = "Winner : X";
+      status = "WINNER : X";
     } else if (winnerO) {
-      status = "Winner : O";
+      status = "WINNER : O";
     } else if (tie) {
-      status = "This match is a tie";
+      status = " DRAW. ";
     } else {
-      status = "Next Player:" + (this.state.player1Turn ? "X" : "O");
+      status = "NEXT PLAYER : " + (this.state.player1Turn ? "X" : "O");
     }
 
     return (
@@ -216,7 +217,7 @@ class Board extends React.Component {
           {this.renderSquare(8)}
         </div>
         <button className="reset" onClick={() => this.resetGame()}>
-          Reset Game
+          <FaRedoAlt />
         </button>
       </div>
     );
