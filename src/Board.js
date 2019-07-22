@@ -7,7 +7,7 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      xIsNext: true
+      player1Turn: true
     };
   }
 
@@ -21,12 +21,29 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-    const squares = this.state.squares.slice();
+    let squares = this.state.squares.slice();
+    if (this.state.player1Turn) {
+      squares[i] = "X";
+    }
+    this.setState(
+      {
+        squares: squares,
+        player1Turn: !this.state.player1Turn
+      },
+      i => this.botMove(i)
+    );
+  }
+
+  botMove(i) {
+    let squares = this.state.squares.slice();
     if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({ squares: squares, xIsNext: !this.state.xIsNext });
+    squares[squares.findIndex(elem => elem === null)] = "O";
+    this.setState({
+      squares: squares,
+      player1Turn: !this.state.player1Turn
+    });
   }
 
   calculateWinner(squares) {
@@ -53,13 +70,30 @@ class Board extends React.Component {
     return null;
   }
 
+  calculateTie(squares) {
+    let win = this.calculateWinner(squares);
+    let moveLeft = squares.findIndex(elem => elem === null);
+    if (moveLeft === -1 && win === null) {
+      return 1;
+    }
+    return null;
+  }
+
+  resetGame() {
+    const squares = Array(9).fill(null);
+    this.setState({ squares: squares, player1Turn: true });
+  }
+
   render() {
     const winner = this.calculateWinner(this.state.squares);
+    const tie = this.calculateTie(this.state.squares);
     let status = "";
     if (winner) {
-      status = "Winner: " + winner;
+      status = "Winner : " + winner;
+    } else if (tie) {
+      status = "This match is a tie";
     } else {
-      status = "Next Player:" + (this.state.xIsNext ? "X" : "O");
+      status = "Next Player:" + (this.state.player1Turn ? "X" : "O");
     }
 
     return (
@@ -80,6 +114,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+        <button onClick={() => this.resetGame()}>Reset Game</button>
       </div>
     );
   }
