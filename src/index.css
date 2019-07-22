@@ -121,3 +121,28 @@ button[disabled] {
     line-height: 10rem;
   }
 }
+
+@media only screen and (min-width: 960px) {
+  .container {
+    max-width: 540px;
+  }
+
+  .square {
+    width: 10rem;
+    border: 0.2rem solid #1c1c1c;
+    font-size: 5rem;
+    height: 7rem;
+    line-height: 7rem;
+  }
+  .status {
+    margin-bottom: 2em;
+    font-size: 2rem;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 300;
+  }
+
+  .game-board {
+    margin: 3em auto;
+    width: 90%;
+  }
+}
