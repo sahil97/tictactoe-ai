@@ -196,7 +196,8 @@ class Board extends React.Component {
     } else if (tie) {
       status = " DRAW. ";
     } else {
-      status = "NEXT PLAYER : " + (this.state.player1Turn ? "X" : "O");
+      // status = "You are : " + (this.state.player1Turn ? "X" : "O");
+      status = "YOU ARE : X";
     }
 
     return (
